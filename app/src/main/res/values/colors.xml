@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="x1_y1_background">#35262b</color>
+    <color name="x1_y1_font">#997380</color>
+
+    <color name="x2_y2_background">#342c2a</color>
+    <color name="x2_y2_font">#9a837e</color>
+
+    <color name="x3_y4_background">#272B34</color>
+    <color name="x3_y4_font">#74829b</color>
+
+    <color name="x3_y9_background">#2C2D2F</color>
+    <color name="x3_y9_font">#81868C</color>
+
+    <color name="x3_y10_background">#302A2C</color>
+    <color name="x3_y10_font">#938084</color>
+
+    <color name="x17_y2_background">#2C2C46</color>
+    <color name="x17_y2_font">#8281C3</color>
+
+    <color name="x18_y1_background">#322944</color>
+    <color name="x18_y1_font">#9378BD</color>
+
+    <color name="x13_y2_background">#203844</color>
+    <color name="x13_y2_font">#62A9C5</color>
+
+    <color name="x15_y2_background">#293144</color>
+    <color name="x15_y2_font">#7D96CE</color>
+
+    <color name="x13_y3_background">#213F37</color>
+    <color name="x13_y3_font">#60B9A3</color>
+
+    <color name="background">#1D2025</color>
+</resources>
