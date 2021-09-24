@@ -22,10 +22,14 @@ import kotlin.random.Random
 //└──────────────────────────┘
 class ElementsAdapter(val elementList: List<Element>) :
     RecyclerView.Adapter<ElementsAdapter.ElementViewHolder>() {
+    private var isDialogExist = false;
+
     inner class ElementViewHolder(val binding: ElementItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(element: Element, resources: Resources, context: Context) {
+
+
             with(binding) {
                 if (element.visibility != null) itemView.visibility = INVISIBLE
                 elementName = element.name
@@ -69,41 +73,50 @@ class ElementsAdapter(val elementList: List<Element>) :
                     elementFont = getColor(resources, R.color.x3_y10_font)
                 }
                 itemView.setOnClickListener {
-                    val builder = AlertDialog.Builder(context)
-                    val dialog = builder.create()
-                    val dialogView = inflate(context, R.layout.detail_dialog, null)
-                    val dialogElementNumber =
-                        dialogView.findViewById<TextView>(R.id.dialogElementNumber)
-                    val dialogElementName =
-                        dialogView.findViewById<TextView>(R.id.dialogElementName)
-                    val dialogElementAtomicWeight =
-                        dialogView.findViewById<TextView>(R.id.dialogElementAtomicWeight)
-                    val dialogElementSymbol =
-                        dialogView.findViewById<TextView>(R.id.dialogElementSymbol)
-                    val dialogElementSummary =
-                        dialogView.findViewById<TextView>(R.id.dialogElementSummary)
-                    val dialogImageView = dialogView.findViewById<ImageView>(R.id.dialogImageView)
-                    dialogElementNumber.text = element.number.toString()
-                    dialogElementAtomicWeight.text =
-                        "Atomic Weight: ${element.atomic_mass}"
-                    dialogElementName.text = element.name
-                    dialogElementSymbol.text = element.symbol
-                    dialogElementSummary.text = element.summary
+                    if (!isDialogExist) {
+                        val builder = AlertDialog.Builder(context)
+                        val dialog = builder.create()
+                        val dialogView = inflate(context, R.layout.detail_dialog, null)
+                        val dialogElementNumber =
+                            dialogView.findViewById<TextView>(R.id.dialogElementNumber)
+                        val dialogElementName =
+                            dialogView.findViewById<TextView>(R.id.dialogElementName)
+                        val dialogElementAtomicWeight =
+                            dialogView.findViewById<TextView>(R.id.dialogElementAtomicWeight)
+                        val dialogElementSymbol =
+                            dialogView.findViewById<TextView>(R.id.dialogElementSymbol)
+                        val dialogElementSummary =
+                            dialogView.findViewById<TextView>(R.id.dialogElementSummary)
+                        val dialogImageView =
+                            dialogView.findViewById<ImageView>(R.id.dialogImageView)
+                        dialogElementNumber.text = element.number.toString()
+                        dialogElementAtomicWeight.text =
+                            "Atomic Weight: ${element.atomic_mass}"
+                        dialogElementName.text = element.name
+                        dialogElementSymbol.text = element.symbol
+                        dialogElementSummary.text = element.summary
 
-                    when (Random.nextInt(1, 7)) {
-                        1 -> dialogImageView.setImageResource(R.drawable.bismuth)
-                        2 -> dialogImageView.setImageResource(R.drawable.iron)
-                        3 -> dialogImageView.setImageResource(R.drawable.copper)
-                        4 -> dialogImageView.setImageResource(R.drawable.iodine)
-                        5 -> dialogImageView.setImageResource(R.drawable.antimony)
-                        6 -> dialogImageView.setImageResource(R.drawable.carbon)
+                        when (Random.nextInt(1, 7)) {
+                            1 -> dialogImageView.setImageResource(R.drawable.bismuth)
+                            2 -> dialogImageView.setImageResource(R.drawable.iron)
+                            3 -> dialogImageView.setImageResource(R.drawable.copper)
+                            4 -> dialogImageView.setImageResource(R.drawable.iodine)
+                            5 -> dialogImageView.setImageResource(R.drawable.antimony)
+                            6 -> dialogImageView.setImageResource(R.drawable.carbon)
+                        }
+                        dialog.setView(dialogView)
+                        R.style.Animation_Design_BottomSheetDialog
+
+                        if (dialog.window != null) dialog.window!!.attributes.windowAnimations =
+                            R.style.SlidingDialogAnimation
+                        dialog.show()
+                        isDialogExist = true
+
+                        dialog.setOnDismissListener {
+                            isDialogExist = false
+                        }
+
                     }
-                    dialog.setView(dialogView)
-                    R.style.Animation_Design_BottomSheetDialog
-
-                    if (dialog.window != null) dialog.window!!.attributes.windowAnimations =
-                        R.style.SlidingDialogAnimation
-                    dialog.show()
                 }
             }
         }
